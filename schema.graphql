@@ -2,7 +2,7 @@ type Hotel {
   id: ID
   short_description: String
   city: String
-  average: Int
+  average: Float
   number_of_votes: Int
   long_description: String
   hotel_name: String
