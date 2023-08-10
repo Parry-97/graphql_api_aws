@@ -32,7 +32,12 @@ type Query {
   getHotelByIdV2(id: ID!): Hotel
 }
 
+type Subscription {
+  newHotelAdded: Hotel @aws_subscribe(mutations: ["newHotel"])
+}
+
 schema {
   query: Query
   mutation: Mutation
+  subscription: Subscription
 }
