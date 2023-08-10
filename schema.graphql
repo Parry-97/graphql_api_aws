@@ -1,0 +1,38 @@
+type Hotel {
+  id: ID
+  short_description: String
+  city: String
+  average: Float
+  number_of_votes: Int
+  long_description: String
+  hotel_name: String
+  reviews: [Review]
+}
+
+input HotelInput {
+  short_description: String
+  city: String
+  average: Float
+  number_of_votes: Int
+  long_description: String
+  hotel_name: String
+}
+
+type Review {
+  id: ID
+  review_text: String
+}
+
+type Mutation {
+  newHotel(hotel: HotelInput!): Hotel
+}
+
+type Query {
+  getHotelById(id: ID!): Hotel
+  getHotelByIdV2(id: ID!): Hotel
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
