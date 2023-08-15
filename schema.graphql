@@ -1,0 +1,45 @@
+type Hotel {
+	id: ID
+	short_description: String
+	city: String
+	average: Float
+	number_of_votes: Int
+	long_description: String
+	hotel_name: String
+	reviews: [Review]
+}
+
+input HotelInput {
+	short_description: String
+	city: String
+	average: Float
+	number_of_votes: Int
+	long_description: String
+	hotel_name: String
+}
+
+type Review {
+	id: ID
+	review_text: String
+}
+
+type Mutation {
+	newHotel(hotel: HotelInput!): Hotel
+		@aws_auth(cognito_groups: ["Admins"])
+}
+
+type Query {
+	getHotelById(id: ID!): Hotel
+	getHotelByIdV2(id: ID!): Hotel
+}
+
+type Subscription {
+	newHotelAdded: Hotel
+		@aws_subscribe(mutations: ["newHotel"])
+}
+
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}
